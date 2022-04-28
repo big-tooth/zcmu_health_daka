@@ -1,0 +1,11 @@
+[
+  {"id":4,"flag":[{"ANSWERTEXT": "C.内地学生（滨文校区，滨江学院本科生）","num": 2},{"ANSWERTEXT": "B.内地学生（滨文校区，本部本科生）","num": 1}]},
+  {"id":7,"flag": [{"ANSWERTEXT": "f.无以上情况","num": 5},{"ANSWERTEXT": "f.无以上情况","num": 5}]},
+  {"id":13,"flag": [{"ANSWERTEXT": "正常","num": 0},{"ANSWERTEXT": "正常","num": 0}]},
+  {"id":20,"flag": [{"ANSWERTEXT": "无","num": 1},{"ANSWERTEXT": "无","num": 1}]},
+  {"id":22,"flag": [{"ANSWERTEXT": "是","num": 0},{"ANSWERTEXT": "是","num": 0}]},
+  {"id":30,"flag": [{"ANSWERTEXT": "在校","num": 0},{"ANSWERTEXT": "在校","num": 0}]},
+  {"id":31,"flag": [{"ANSWERTEXT": "上午体温<37.3°C","num": 0},{"ANSWERTEXT": "上午体温<37.3°C","num": 0}]},
+  {"id":32,"flag": [{"ANSWERTEXT": "否","num": 1},{"ANSWERTEXT": "否","num": 1}]},
+  {"id":33,"flag": [{"ANSWERTEXT": "未检测","num": 3},{"ANSWERTEXT": "未检测","num": 3}]}
+]
