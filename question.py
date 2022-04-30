@@ -48,11 +48,26 @@ def daka(id,flag):
             for ii in range(len(daka_info_rows[i]['OPTIONS'])):
                 if daka_info_rows[i]['OPTIONS'][ii]['CHECKED'] == True:
                     load_qustionnaire["answerData"][i - 1]['answerArr'][0] = daka_info_rows[i]['OPTIONS'][ii]['SUBID']
-    for i in range(len(load_answer)-1):
-        load_qustionnaire["answerData"][load_answer[i]["id"]-1]["answerArr"][0] = daka_info_rows[load_answer[i]["id"]]['OPTIONS'][load_answer[i]["flag"][flag]["num"]]['SUBID']
-    final_daka = json.dumps(load_qustionnaire, ensure_ascii=False)
+        # print("141414",load_qustionnaire["answerData"][14]['answerArr'])
+    for i in range(len(load_answer)):
+        # print("第",i,"道题目是：",load_qustionnaire["answerData"][load_answer[i]["id"]-1]["answerArr"][0])
+        # print(load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["itemType"])
+        questionnaireType=load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["itemType"]
+        # print("--------------------------")
 
-    print("提交内容"+final_daka)
+        if questionnaireType!='textFill':
+            load_qustionnaire["answerData"][load_answer[i]["id"]-1]["answerArr"][0] = daka_info_rows[load_answer[i]["id"]]['OPTIONS'][load_answer[i]["flag"][flag]["num"]]['SUBID']
+            # print("I FIND HHH", load_qustionnaire["answerData"][load_answer[i]["id"] - 1])
+        else:
+            # print("HERE IS ANSWER",load_answer[i]["flag"][0]["ANSWERTEXT"])
+            # 题目位置
+            # print("TELL ME WHY", load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["answerArr"])
+            load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["answerArr"]=load_answer[i]["flag"][0]["ANSWERTEXT"]
+            # print("hhhh",load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["answerArr"][0])
+    final_daka = json.dumps(load_qustionnaire, ensure_ascii=False)
+    print("final daka info",final_daka)
+    # print("提交内容"+final_daka)
+    # print(load_answer[3]["flag"][0]["ANSWERTEXT"])
 
     data = {
         'questionnaireId': questionnaireId,
