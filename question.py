@@ -28,7 +28,7 @@ def daka(id,flag):
                       data=data)
     # print(r.status_code)
     str_json = json.loads(r.content.decode("utf-8"))
-    print(str_json['rows'])
+    # print(str_json['rows'])
 
     # 修改部分信息
     with open("question.json", 'r', encoding="utf-8") as load_question:
@@ -38,7 +38,7 @@ def daka(id,flag):
         load_qustionnaire = json.load(load_f1)
     daka_info = json.loads(r.content.decode('utf-8'))
     daka_info_rows = daka_info['rows']
-    print("daka_info_raws是", daka_info_rows)
+    # print("daka_info_raws是", daka_info_rows)
     for i in range(1, len(daka_info_rows) ):
         load_qustionnaire["answerData"][i - 1]['itemId'] = daka_info_rows[i]["ITEMID"]
         load_qustionnaire["answerData"][i - 1]['itemType'] = daka_info_rows[i]["TYPE"]
@@ -59,13 +59,14 @@ def daka(id,flag):
             load_qustionnaire["answerData"][load_answer[i]["id"]-1]["answerArr"][0] = daka_info_rows[load_answer[i]["id"]]['OPTIONS'][load_answer[i]["flag"][flag]["num"]]['SUBID']
             # print("I FIND HHH", load_qustionnaire["answerData"][load_answer[i]["id"] - 1])
         else:
+            print("第",load_answer[i]["id"],"道题目：","跳过")
             # print("HERE IS ANSWER",load_answer[i]["flag"][0]["ANSWERTEXT"])
             # 题目位置
             # print("TELL ME WHY", load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["answerArr"])
-            load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["answerArr"]=load_answer[i]["flag"][0]["ANSWERTEXT"]
+            # load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["answerArr"]=load_answer[i]["flag"][0]["ANSWERTEXT"]
             # print("hhhh",load_qustionnaire["answerData"][load_answer[i]["id"] - 1]["answerArr"][0])
     final_daka = json.dumps(load_qustionnaire, ensure_ascii=False)
-    print("final daka info",final_daka)
+    # print("final daka info",final_daka)
     # print("提交内容"+final_daka)
     # print(load_answer[3]["flag"][0]["ANSWERTEXT"])
 
@@ -74,10 +75,11 @@ def daka(id,flag):
         'userId': id,
         'answerData': final_daka
     }
-    r = requests.post("https://daka.zcmu.edu.cn/questionnaireSurvey/addQuestionnaireRecord", headers=headers, data=data)
-    print(r.status_code)
-    print(r.content.decode('utf-8'))
+    rr = requests.post("https://daka.zcmu.edu.cn/questionnaireSurvey/addQuestionnaireRecord", headers=headers, data=data)
+    # print(rr.status_code)
+    # print(rr.content.decode('utf-8'))
     daka_sign = str_json["rspcode"]
+    # print("打卡状态是",daka_sign)
     if daka_sign == "000000":
         print("打卡成功")
     else:
